@@ -16,20 +16,25 @@ If you would like to explore the dashboard, modify visuals, or view the DAX meas
 
 ---
 
-## 👀 Option 2 — Preview the Dashboard
+# 👀 Option 2 — Preview the Dashboard
 
 If you only want to view the dashboard without downloading anything, you can use the following resources.
 
-### 📊 Dashboard Preview (PDF)
+## 📄 Dashboard Preview (PDF)
 
 ➡️ [View Dashboard PDF](../Documentation/Zomato%20Dashboard.pdf)
 
-### 🖼 Dashboard Screenshot
+---
 
-![Dashboard Preview](../Images/Dashboard%20Overview.png)
+## 🖼 Dashboard Screenshot
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/nikhilmore2003/Zomato-Sales-Analysis-PowerBI/main/Images/Zomato_Dashboard_Overview.png" width="95%">
+</p>
 
 ---
 
-Thank you for visiting this project ⭐
+⭐ Thank you for visiting this project!
 
+If you found it useful, please consider giving the repository a **Star**.
 If you found it useful, please consider giving the repository a **Star**.
