@@ -1,11 +1,35 @@
-# 📥 Download Power BI Dashboard
+# 📥 Power BI Dashboard
 
-The Power BI dashboard (`.pbix`) file exceeds GitHub's recommended upload size.
+Thank you for visiting this project.
 
-## Download
+The original **Power BI (.pbix)** file exceeds GitHub's recommended upload size, so it is hosted on Google Drive.
+
+---
+
+## 📂 Option 1 — Download the PBIX File (Recommended)
+
+If you would like to explore the dashboard, modify visuals, or view the DAX measures, download the original Power BI file.
+
+### 🔗 Download
 
 👉 **[Download Zomato Sales Analysis Dashboard (.pbix)](https://drive.google.com/file/d/1Vpfbq3PJn0jpsy5TdpRRAZjOhbv0hz-A/view?usp=sharing)**
 
 ---
 
-If the download link stops working, please create an issue in this repository.
+## 👀 Option 2 — Preview the Dashboard
+
+If you only want to view the dashboard without downloading anything, you can use the following resources.
+
+### 📊 Dashboard Preview (PDF)
+
+➡️ [View Dashboard PDF](../Documentation/Zomato%20Dashboard.pdf)
+
+### 🖼 Dashboard Screenshot
+
+![Dashboard Preview](../Images/Dashboard%20Overview.png)
+
+---
+
+Thank you for visiting this project ⭐
+
+If you found it useful, please consider giving the repository a **Star**.
