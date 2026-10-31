@@ -12,6 +12,10 @@
 
 ### 🚀 Transforming Restaurant Data into Actionable Business Insights
 
+<a href="https://nikhilmore2003.github.io/Zomato-Sales-Analysis-PowerBI/"><img src="https://img.shields.io/badge/🔴_LIVE-View_Project_Page-2dd4bf?style=for-the-badge"/></a>
+
+**👉 [View Project Page](https://nikhilmore2003.github.io/Zomato-Sales-Analysis-PowerBI/)**
+
 </div>
 
 ---
@@ -78,11 +82,7 @@ This dashboard transforms raw business data into meaningful insights that suppor
 
 ## Main Dashboard
 
-> Replace this section with your dashboard screenshot.
-
-```text
-Images/Dashboard Overview.png
-```
+![Zomato Sales Analysis Dashboard](Images/Zomato_Dashboard_Overview.png)
 
 ---
 

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zomato Sales Analysis — Power BI Dashboard | Nikhil More</title>
+  <meta name="description" content="Nikhil More's Zomato Sales Analysis Power BI dashboard: 987M in sales, 150K orders, city-wise sales, yearly trend and food category performance." />
+  <meta property="og:title" content="Zomato Sales Analysis — Power BI Dashboard" />
+  <meta property="og:description" content="Restaurant and order analytics in Power BI: 987M sales, 150K orders, city and yearly trends." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2314b8a6'/><rect x='7' y='17' width='4' height='8' rx='1' fill='white'/><rect x='14' y='11' width='4' height='14' rx='1' fill='white'/><rect x='21' y='7' width='4' height='18' rx='1' fill='white'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="site/theme.js"></script>
+  <link rel="stylesheet" href="site/project.css" />
+  <style>
+    .zm { color: #E23744; font-weight: 800; font-style: italic; letter-spacing: -.02em; }
+    .chart-box { position: relative; height: 280px; }
+    .cat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .cat .kpi .sub { color: var(--text-3); font-size: .85rem; margin-top: 2px; }
+    .embed { position: relative; width: 100%; aspect-ratio: 16 / 9.6; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+    .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .feature-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; align-items: stretch; }
+    @media (max-width: 900px) { .feature-row, .cat { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="https://nikhilmore2003.github.io/" class="logo" aria-label="Nikhil More portfolio">
+        <span class="logo-mark">NM</span><span>Nikhil<span style="color:var(--accent)">.</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#numbers">Numbers</a>
+        <a href="#insights">Insights</a>
+        <a href="#process">How I Built It</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/nikhilmore2003/Zomato-Sales-Analysis-PowerBI" target="_blank" rel="noopener">GitHub</a>
+        <button class="theme-toggle" aria-label="Switch between dark and light theme" title="Switch theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <a class="back" href="https://nikhilmore2003.github.io/#projects">← Back to portfolio</a>
+        <div class="eyebrow"><span class="dot"></span> Power BI project</div>
+        <h1><span class="zm">zomato</span> <span class="gradient-text">Sales Analysis</span></h1>
+        <p class="lead">An interactive Power BI dashboard built on six related Zomato tables: restaurants, menus, food, orders, order types and users. It shows how much sold, where it sold and how sales changed from 2017 to 2020, with buttons to switch views and rank cities.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#dashboard">See the dashboard ↓</a>
+          <a class="btn btn-ghost" href="https://drive.google.com/file/d/1Vpfbq3PJn0jpsy5TdpRRAZjOhbv0hz-A/view?usp=sharing" target="_blank" rel="noopener">Download .pbix</a>
+          <a class="btn btn-ghost" href="Documentation/Zomato%20Sales%20Analysis%20Dashboard.pdf" target="_blank" rel="noopener">View PDF</a>
+          <a class="btn btn-ghost" href="https://drive.google.com/drive/folders/17aGXHcAZX86tXazF_xzi2RquL2FBm8tL?usp=sharing" target="_blank" rel="noopener">Dataset</a>
+        </div>
+        <div class="tags"><span>Power BI</span><span>DAX</span><span>Power Query</span><span>Data Modeling</span><span>Bookmarks</span><span>Excel</span></div>
+      </div>
+    </section>
+
+    <!-- ================= DASHBOARD ================= -->
+    <section class="section" id="dashboard">
+      <div class="container">
+        <!-- LIVE POWER BI: after "Publish to web" in Power BI Service, paste the embed link into
+             POWERBI_EMBED_URL at the bottom of this file. The live, clickable report will then show here. -->
+        <div id="live-embed" hidden>
+          <div class="section-head"><h2>Live <span class="gradient-text">Power BI report</span></h2><p>The real report, embedded from Power BI Service. Click the buttons and visuals to explore it.</p></div>
+          <div class="embed"><iframe id="pbi-frame" title="Zomato Sales Analysis Power BI report" allowfullscreen loading="lazy"></iframe></div>
+        </div>
+
+        <div id="static-shot">
+          <div class="section-head">
+            <h2>The <span class="gradient-text">dashboard</span></h2>
+            <p>The overview page from Power BI. Toggle buttons switch between Amount and Quantity, and the city chart can show the Top 5, 10, 20, 50 or 100 cities.</p>
+          </div>
+          <a class="shot" href="Images/Zomato_Dashboard_Overview.png" target="_blank" rel="noopener">
+            <img src="Images/Zomato_Dashboard_Overview.png" alt="Zomato Sales Analysis Power BI dashboard showing KPIs, food category cards, top cities by sales and sales by year" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NUMBERS ================= -->
+    <section class="section" id="numbers">
+      <div class="container">
+        <div class="section-head"><h2>Headline <span class="gradient-text">numbers</span></h2></div>
+        <div class="kpis">
+          <div class="kpi"><div class="label">Total Sales</div><div class="value">987M</div></div>
+          <div class="kpi"><div class="label">Quantity Sold</div><div class="value">2M</div></div>
+          <div class="kpi"><div class="label">Rating</div><div class="value">148K</div></div>
+          <div class="kpi"><div class="label">Orders</div><div class="value">150K</div></div>
+        </div>
+
+        <div class="feature-row" style="margin-top:16px">
+          <div class="card">
+            <h3>Sales by year</h3>
+            <div class="chart-box"><canvas id="c-year"></canvas></div>
+          </div>
+          <div class="card">
+            <h3>Top cities by sales</h3>
+            <div class="chart-box"><canvas id="c-city"></canvas></div>
+          </div>
+        </div>
+
+        <div class="cat" style="margin-top:16px">
+          <div class="kpi"><div class="label">🥗 Veg</div><div class="value">122M</div><div class="sub">Rating 12K</div></div>
+          <div class="kpi"><div class="label">🍗 Non-Veg</div><div class="value">106M</div><div class="sub">Rating 10K</div></div>
+          <div class="kpi"><div class="label">🍟 Others</div><div class="value">24M</div><div class="sub">Rating 927</div></div>
+        </div>
+        <p class="muted" style="margin-top:12px">Figures are taken from the Power BI report. City values are approximate, read from the chart.</p>
+      </div>
+    </section>
+
+    <!-- ================= INSIGHTS ================= -->
+    <section class="section" id="insights">
+      <div class="container">
+        <div class="section-head"><h2>Key <span class="gradient-text">insights</span></h2></div>
+        <div class="grid-3">
+          <div class="insight"><div class="ic">📈</div><h3>2018 was the peak year</h3><p>Sales grew more than 4×, from about 0.09bn in 2017 to 0.41bn in 2018, then fell to 0.34bn in 2019 and 0.14bn in 2020.</p></div>
+          <div class="insight"><div class="ic">🏙️</div><h3>Tier-2 cities can lead</h3><p>Tirupati is the #1 city by sales at over 40M, well ahead of metro areas like Electronic City (Bangalore) and Baner (Pune).</p></div>
+          <div class="insight"><div class="ic">🥗</div><h3>Veg edges out Non-Veg</h3><p>Veg dishes bring in 122M vs 106M for Non-Veg, and Veg also scores higher on the ratings measure (12K vs 10K).</p></div>
+          <div class="insight"><div class="ic">🛵</div><h3>Huge order volume</h3><p>150K orders and 2M items sold. On average each order holds about 13 items, which suggests group and family orders.</p></div>
+          <div class="insight"><div class="ic">📉</div><h3>Demand fell after 2019</h3><p>2020 sales were about a third of the 2018 peak. A drop that large is worth breaking down by city and restaurant to find the cause.</p></div>
+          <div class="insight"><div class="ic">🎯</div><h3>What to do next</h3><p>Find out what drove the 2019–2020 decline, focus marketing on strong cities like Tirupati, and grow the Veg menu.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROCESS ================= -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head"><h2>How I <span class="gradient-text">built it</span></h2></div>
+        <div class="grid-2">
+          <div class="card"><h3>1 · Data</h3><ul class="clean">
+            <li>Six related Excel tables: food, menu, orders, orders_type, restaurant and users.</li>
+            <li>Linked them in the Power BI data model so one dashboard can slice across all of them.</li>
+          </ul></div>
+          <div class="card"><h3>2 · Clean (Power Query)</h3><ul class="clean">
+            <li>Data cleaning and transformation before modelling: types, blanks and duplicates.</li>
+          </ul></div>
+          <div class="card"><h3>3 · Measures (DAX)</h3><ul class="clean">
+            <li>Business calculations for amount, quantity, ratings and orders.</li>
+            <li>City ranking that switches between Top 5, 10, 20, 50 and 100.</li>
+          </ul></div>
+          <div class="card"><h3>4 · Design</h3><ul class="clean">
+            <li>App-style layout with side navigation and Zomato's red brand colour.</li>
+            <li>Buttons to switch views between Amount and Quantity.</li>
+          </ul></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© 2026 Nikhil More · Data Analyst</span>
+      <span>
+        <a href="https://nikhilmore2003.github.io/">Portfolio</a> ·
+        <a href="https://github.com/nikhilmore2003" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/nikhil-more-a43a2b259/" target="_blank" rel="noopener">LinkedIn</a> ·
+        <a href="mailto:nikhilmore2003430@gmail.com">Email</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="site/vendor/chart.umd.min.js"></script>
+  <script>
+  // ▼▼ Paste your Power BI "Publish to web" link here (keep the quotes). Leave empty to show the screenshot.
+  var POWERBI_EMBED_URL = "";
+  // ▲▲
+
+  (function () {
+    if (POWERBI_EMBED_URL) {
+      document.getElementById("pbi-frame").src = POWERBI_EMBED_URL;
+      document.getElementById("live-embed").hidden = false;
+      document.getElementById("static-shot").style.marginTop = "40px";
+    }
+
+    var RED = "#E23744", charts = {};
+    function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+    function draw() {
+      var text = css("--text-2"), grid = css("--border");
+      var axis = function (cb) { var t = { color: text, maxRotation: 0 }; if (cb) t.callback = cb; return { ticks: t, grid: { color: grid } }; };
+      Object.keys(charts).forEach(function (k) { charts[k].destroy(); });
+      charts.year = new Chart(document.getElementById("c-year"), {
+        type: "line",
+        data: { labels: ["2017", "2018", "2019", "2020"], datasets: [{ data: [0.09, 0.41, 0.34, 0.14], borderColor: RED, backgroundColor: "rgba(226,55,68,.18)", fill: true, tension: .35, pointRadius: 5, pointBackgroundColor: RED }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return " " + c.parsed.y + "bn"; } } } },
+          scales: { x: axis(), y: Object.assign(axis(function (v) { return v + "bn"; }), { beginAtZero: true }) } }
+      });
+      var cities = ["Tirupati", "Electronic City, Bangalore", "Baner, Pune", "Raipur", "Malviya Nagar, Delhi", "Sultanpur", "Vastrapur, Ahmedabad"];
+      var vals = [42, 29, 27, 23, 17, 15, 13];
+      charts.city = new Chart(document.getElementById("c-city"), {
+        type: "bar",
+        data: { labels: cities, datasets: [{ data: vals, backgroundColor: vals.map(function (_, i) { return i ? "rgba(226,55,68," + (0.85 - i * 0.08) + ")" : RED; }), borderRadius: 5 }] },
+        options: { indexAxis: "y", responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return " ≈" + c.parsed.x + "M"; } } } },
+          scales: { x: axis(function (v) { return v + "M"; }), y: { ticks: { color: text }, grid: { display: false } } } }
+      });
+    }
+    Chart.defaults.font.family = "Inter, system-ui, sans-serif";
+    draw();
+    document.addEventListener("themechange", draw);
+  })();
+  </script>
+</body>
+</html>
