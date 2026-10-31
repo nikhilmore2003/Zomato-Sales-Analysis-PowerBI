@@ -22,7 +22,7 @@ If you only want to view the dashboard without downloading anything, you can use
 
 ## 📄 Dashboard Preview (PDF)
 
-➡️ [View Dashboard PDF](../Documentation/Zomato%20Dashboard.pdf)
+➡️ [View Dashboard PDF](../Documentation/Zomato%20Sales%20Analysis%20Dashboard.pdf)
 
 ---
 
@@ -36,5 +36,4 @@ If you only want to view the dashboard without downloading anything, you can use
 
 ⭐ Thank you for visiting this project!
 
-If you found it useful, please consider giving the repository a **Star**.
 If you found it useful, please consider giving the repository a **Star**.
